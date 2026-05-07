@@ -31,9 +31,6 @@ Automatic Sleep Stage Classification using EOG-R Signals and Deep Learning
 - [📊 Experimental Setup](#-experimental-setup)
 - [📈 Results](#-results)
 - [🛠️ Technologies Used](#️-technologies-used)
-- [📁 Project Structure](#-project-structure)
-- [🚀 Installation](#-installation)
-- [▶️ How to Run](#️-how-to-run)
 - [🔬 Future Improvements](#-future-improvements)
 - [📚 References](#-references)
 - [👨‍💻 Author](#-author)
@@ -342,28 +339,6 @@ This behavior is expected due to transitional sleep characteristics.
 
 ---
 
-# 📁 Project Structure
-
-```text
-Sleep-Stage-Classification/
-│
-├── notebooks/
-├── models/
-├── images/
-│   ├── banner.png
-│   ├── architecture.png
-│   ├── workflow.png
-│   ├── accuracy_curve.png
-│   ├── loss_curve.png
-│   ├── confusion_matrix_raw.png
-│   └── confusion_matrix_normalized.png
-│
-├── README.md
-```
-
----
-
-
 # 🌟 Key Features
 
 ✔ Subject-wise dataset splitting  
@@ -392,7 +367,6 @@ https://pubmed.ncbi.nlm.nih.gov/29860441/
 https://www.medrxiv.org/content/10.1101/2024.08.02.24311417
 
 https://pubmed.ncbi.nlm.nih.gov/25409106/
-
 
 ---
 
