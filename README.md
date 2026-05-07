@@ -77,7 +77,7 @@ The dataset contains polysomnography sleep recordings with annotated sleep stage
 
 📌 Dataset Source:
 
-https://physionet.org/content/sleep-edfx/
+https://sleepdata.org/datasets/mesa
 
 ---
 
@@ -347,7 +347,6 @@ This behavior is expected due to transitional sleep characteristics.
 ```text
 Sleep-Stage-Classification/
 │
-├── data/
 ├── notebooks/
 ├── models/
 ├── images/
@@ -360,62 +359,10 @@ Sleep-Stage-Classification/
 │   └── confusion_matrix_normalized.png
 │
 ├── README.md
-├── requirements.txt
-└── train.py
 ```
 
 ---
 
-# 🚀 Installation
-
-## Clone Repository
-
-```bash
-git clone https://github.com/your-username/Sleep-Stage-Classification.git
-```
-
----
-
-## Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-# ▶️ How to Run
-
-## Run Training
-
-```bash
-python train.py
-```
-
----
-
-## Run Notebook
-
-```bash
-jupyter notebook
-```
-
----
-
-# 📦 Requirements
-
-```txt
-torch
-numpy
-pandas
-matplotlib
-scikit-learn
-mne
-scipy
-tqdm
-```
-
----
 
 # 🌟 Key Features
 
@@ -440,21 +387,28 @@ tqdm
 
 # 📚 References
 
-1. Sleep-EDF Dataset  
-https://physionet.org/content/sleep-edfx/
+https://pubmed.ncbi.nlm.nih.gov/29860441/
 
-2. PyTorch Documentation  
-https://pytorch.org/
+https://www.medrxiv.org/content/10.1101/2024.08.02.24311417
 
-3. MNE Documentation  
-https://mne.tools/
+https://pubmed.ncbi.nlm.nih.gov/25409106/
+
 
 ---
 
-# 👨‍💻 Author
+# 👨‍💻 Authors
 
-## Osama Mohamed Abd El-Fattah Mohamed
+## Osama Mohamed Abd El-Fattah Mohamed  
 
-🎓 Biomedical Engineering Student  
-🧠 Machine Learning & Deep Learning Enthusiast  
+🎓 Biomedical Engineering Student   
+📍 Helwan University
+
+## Mohamed Hazem Mohamed Al-Halafawi
+
+🎓 Biomedical Engineering Student   
+📍 Helwan University
+
+## Mohamed Osama Mohamed Abdul Moneim
+
+🎓 Biomedical Engineering Student   
 📍 Helwan University
