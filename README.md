@@ -1,2 +1,3 @@
-# Sleep-Stage-Classification
-Deep learning-based sleep stage classification using EOG-R biosignals with PyTorch.
+<p align="center">
+  <img src="images/banner.png" width="100%">
+</p>
