@@ -156,8 +156,7 @@ The proposed deep learning architecture combines:
 ## 🧠 Architecture Diagram
 
 <p align="center">
-  <img src="![Uploading image.png…]()
-" width="85%">
+  <img src="<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/85f9403c-468d-4aeb-a352-2bba71e023e3" />" width="85%">
 </p>
 
 ---
