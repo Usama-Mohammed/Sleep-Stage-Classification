@@ -156,7 +156,7 @@ The proposed deep learning architecture combines:
 ## 🧠 Architecture Diagram
 
 <p align="center">
-  <img src="images/accuracy_curve.png" width="80%">
+  <img src="images/architecture.png" width="80%">
 </p>
 
 
