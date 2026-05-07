@@ -13,7 +13,7 @@ Automatic Sleep Stage Classification using EOG-R Signals and Deep Learning
 ![Python](https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python)
 ![PyTorch](https://img.shields.io/badge/PyTorch-DeepLearning-red?style=for-the-badge&logo=pytorch)
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
-![Dataset](https://img.shields.io/badge/Dataset-SleepEDF-orange?style=for-the-badge)
+![Dataset](https://img.shields.io/badge/Dataset-SleepEDF[MESA]-orange?style=for-the-badge)
 
 </p>
 
