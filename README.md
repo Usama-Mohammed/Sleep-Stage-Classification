@@ -376,7 +376,7 @@ https://pubmed.ncbi.nlm.nih.gov/25409106/
 🎓 Biomedical Engineering Student   
 📍 Helwan University
 
-## Mohamed Hazem Mohamed Al-Halafawi
+## Mohamed Hazem Mohamed El-Halafawy
 
 🎓 Biomedical Engineering Student   
 📍 Helwan University
