@@ -31,8 +31,6 @@ Automatic Sleep Stage Classification using EOG Signals and Deep Learning Archite
 - [🔄 Workflow](#-workflow)
 - [📊 Experimental Setup](#-experimental-setup)
 - [📈 Results](#-results)
-- [📉 Confusion Matrix](#-confusion-matrix)
-- [📋 Evaluation Metrics](#-evaluation-metrics)
 - [🎬 Demo](#-demo)
 - [🛠️ Technologies Used](#️-technologies-used)
 - [📁 Project Structure](#-project-structure)
@@ -40,7 +38,6 @@ Automatic Sleep Stage Classification using EOG Signals and Deep Learning Archite
 - [▶️ How to Run](#️-how-to-run)
 - [🔬 Future Improvements](#-future-improvements)
 - [👨‍💻 Author](#-author)
-- [📜 License](#-license)
 
 ---
 
@@ -174,7 +171,7 @@ The proposed architecture combines CNN and LSTM networks.
 | Optimizer | Adam |
 | Loss Function | CrossEntropyLoss |
 | Batch Size | 32 |
-| Epochs | 30 |
+| Epochs | 25 |
 | Scheduler | ReduceLROnPlateau |
 | Device | CUDA GPU |
 
@@ -182,46 +179,143 @@ The proposed architecture combines CNN and LSTM networks.
 
 # 📈 Results
 
-## Training Accuracy
-
-<p align="center">
-  <img src="images/accuracy.png" width="75%">
-</p>
+The proposed CNN + LSTM model achieved strong performance on the Sleep-EDF dataset using EOG signals.
 
 ---
 
-## Training Loss
+# 📊 Overall Performance
+
+| Metric | Score |
+|------|------|
+| Accuracy | 80.0% |
+| Macro F1-Score | 69.6% |
+| Weighted F1-Score | 81.0% |
+| Cohen’s Kappa | 0.715 |
+
+---
+
+# 📋 Classification Report
+
+| Sleep Stage | Precision | Recall | F1-Score | Support |
+|------|------|------|------|------|
+| Wake | 1.00 | 0.84 | 0.91 | 475 |
+| Stage 1 | 0.36 | 0.44 | 0.39 | 70 |
+| Stage 2 | 0.85 | 0.79 | 0.82 | 373 |
+| Stage 3/4 | 0.49 | 1.00 | 0.66 | 62 |
+| REM | 0.66 | 0.74 | 0.70 | 149 |
+
+---
+
+# 📊 Training Performance
+
+The following plots show the training and validation performance across epochs.
+
+## Accuracy Curve
 
 <p align="center">
-  <img src="images/loss.png" width="75%">
+  <img src="images/accuracy_curve.png" width="80%">
 </p>
+
+### Observations
+
+- Training accuracy gradually increased to approximately **78%**
+- Validation accuracy stabilized around **54–62%**
+- The gap between training and validation accuracy indicates mild overfitting
+
+---
+
+## Loss Curve
+
+<p align="center">
+  <img src="images/loss_curve.png" width="80%">
+</p>
+
+### Observations
+
+- Training loss consistently decreased during training
+- Validation loss fluctuated due to class imbalance and subject variability
+- The model maintained relatively stable convergence
 
 ---
 
 # 📉 Confusion Matrix
 
+## Raw Count Confusion Matrix
+
 <p align="center">
-  <img src="images/confusion_matrix.png" width="70%">
+  <img src="images/confusion_matrix_raw.png" width="85%">
 </p>
 
 ---
 
-# 📋 Evaluation Metrics
+## Normalized Confusion Matrix (Recall)
 
-| Metric | Score |
-|------|------|
-| Accuracy | 82.4% |
-| Precision | 81.7% |
-| Recall | 80.9% |
-| F1-Score | 81.1% |
+<p align="center">
+  <img src="images/confusion_matrix_normalized.png" width="85%">
+</p>
 
 ---
 
-# 📊 Class Distribution
+# 🔍 Results Analysis
 
-<p align="center">
-  <img src="images/class_distribution.png" width="70%">
-</p>
+## Strongly Classified Stages
+
+### Wake
+- Achieved the best performance
+- Precision reached **1.00**
+- F1-score reached **0.91**
+- Most Wake samples were correctly identified
+
+### Stage 2
+- Strong classification performance
+- F1-score reached **0.82**
+- Most Stage 2 epochs were successfully detected
+
+### REM
+- Good REM detection capability
+- Recall reached **0.74**
+- Demonstrates successful temporal learning from EOG signals
+
+---
+
+## Challenging Stages
+
+### Stage 1 (N1)
+- Lowest classification performance
+- F1-score reached **0.39**
+- Common confusion with:
+  - REM
+  - Stage 2
+
+This is expected because Stage 1 shares transitional characteristics with neighboring sleep stages.
+
+---
+
+## Stage 3/4 Performance
+
+- Recall achieved **1.00**
+- The model successfully captured deep sleep patterns
+- Precision remained moderate due to false positives from Stage 2 predictions
+
+---
+
+# 🧠 Key Findings
+
+✔ CNN layers successfully extracted local EOG signal patterns  
+✔ LSTM layers improved temporal sequence learning  
+✔ Subject-wise splitting reduced data leakage  
+✔ Weighted loss improved minority class learning  
+✔ The model generalized well despite class imbalance challenges
+
+---
+
+# ⚠️ Limitations
+
+- Stage 1 remains difficult to classify
+- Validation accuracy fluctuations suggest:
+  - Subject variability
+  - Limited dataset size
+  - Mild overfitting
 
 ---
 
@@ -230,24 +324,6 @@ The proposed architecture combines CNN and LSTM networks.
 <p align="center">
   <img src="images/demo.gif" width="90%">
 </p>
-
----
-
-# 🔬 Discussion
-
-## Challenges
-
-- Class imbalance
-- Similarity between N1 and REM stages
-- Overfitting risk
-- Subject variability
-
-## Solutions Applied
-
-- Weighted loss function
-- Dropout regularization
-- Subject-wise split
-- Learning rate scheduling
 
 ---
 
@@ -278,10 +354,10 @@ EOG-Sleep-Stage-Classification/
 │   ├── banner.png
 │   ├── architecture.png
 │   ├── workflow.png
-│   ├── accuracy.png
-│   ├── loss.png
-│   ├── confusion_matrix.png
-│   ├── class_distribution.png
+│   ├── accuracy_curve.png
+│   ├── loss_curve.png
+│   ├── confusion_matrix_raw.png
+│   ├── confusion_matrix_normalized.png
 │   └── demo.gif
 │
 ├── README.md
@@ -356,11 +432,12 @@ tqdm
 
 # 🔬 Future Improvements
 
-- Transformer-based architectures
 - Attention mechanisms
-- Real-time sleep staging
-- Mobile deployment
+- Transformer-based architectures
+- Data augmentation
+- Focal loss
 - Multi-modal PSG integration
+- Subject-independent domain adaptation
 
 ---
 
@@ -394,9 +471,3 @@ If you found this project useful:
 - Give the repository a ⭐
 - Share it with others
 - Fork the project
-
----
-
-# 📜 License
-
-This project is intended for educational and research purposes.
