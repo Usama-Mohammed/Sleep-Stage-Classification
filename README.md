@@ -2,10 +2,10 @@
   <img src="images/banner.png" width="100%">
 </p>
 
-<h1 align="center">🛌 EOG Sleep Stage Classification using Deep Learning</h1>
+<h1 align="center">🛌 Sleep Stage Classification using EOG-R and CNN-LSTM</h1>
 
 <p align="center">
-Automatic Sleep Stage Classification using EOG Signals and Deep Learning Architectures
+Automatic Sleep Stage Classification using EOG-R Signals and Deep Learning
 </p>
 
 <p align="center">
@@ -14,7 +14,6 @@ Automatic Sleep Stage Classification using EOG Signals and Deep Learning Archite
 ![PyTorch](https://img.shields.io/badge/PyTorch-DeepLearning-red?style=for-the-badge&logo=pytorch)
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 ![Dataset](https://img.shields.io/badge/Dataset-SleepEDF-orange?style=for-the-badge)
-![License](https://img.shields.io/badge/License-Research-green?style=for-the-badge)
 ![GPU](https://img.shields.io/badge/GPU-CUDA-enabled-purple?style=for-the-badge)
 
 </p>
@@ -31,30 +30,30 @@ Automatic Sleep Stage Classification using EOG Signals and Deep Learning Archite
 - [🔄 Workflow](#-workflow)
 - [📊 Experimental Setup](#-experimental-setup)
 - [📈 Results](#-results)
-- [🎬 Demo](#-demo)
 - [🛠️ Technologies Used](#️-technologies-used)
 - [📁 Project Structure](#-project-structure)
 - [🚀 Installation](#-installation)
 - [▶️ How to Run](#️-how-to-run)
 - [🔬 Future Improvements](#-future-improvements)
+- [📚 References](#-references)
 - [👨‍💻 Author](#-author)
 
 ---
 
 # 📌 Overview
 
-Sleep stage classification plays a crucial role in sleep disorder diagnosis and healthcare monitoring.
+This project presents a deep learning framework for automatic sleep stage classification using EOG-R signals extracted from the Sleep-EDF dataset.
 
-This project presents a deep learning framework for automatic sleep stage classification using Electrooculography (EOG) signals extracted from polysomnography recordings.
+The implemented pipeline includes:
 
-The proposed pipeline combines:
+- EOG signal extraction
+- Bandpass filtering (0.3–35 Hz)
+- Epoch segmentation (30 seconds)
+- Subject-wise sequence generation
+- CNN-LSTM deep learning architecture
+- Sleep stage prediction
 
-- Signal preprocessing
-- Spectrogram generation
-- Sequence learning
-- Deep neural networks (CNN + LSTM)
-
-to accurately classify sleep stages.
+The model learns temporal sleep patterns directly from EOG signals and predicts the corresponding sleep stage.
 
 ---
 
@@ -63,10 +62,10 @@ to accurately classify sleep stages.
 Manual sleep stage scoring is:
 
 - Time-consuming
-- Expensive
 - Expert-dependent
+- Computationally expensive
 
-This project aims to automate the sleep staging process using deep learning techniques trained on EOG signals.
+This project aims to automate the sleep staging process using deep learning techniques trained on EOG-R signals.
 
 ---
 
@@ -74,12 +73,7 @@ This project aims to automate the sleep staging process using deep learning tech
 
 ## Sleep-EDF Expanded Dataset
 
-The dataset contains physiological sleep recordings including:
-
-- EOG
-- EEG
-- EMG
-- Sleep stage annotations
+The dataset contains polysomnography sleep recordings with annotated sleep stages.
 
 📌 Dataset Source:
 
@@ -89,40 +83,57 @@ https://physionet.org/content/sleep-edfx/
 
 # 😴 Sleep Stages
 
-The model predicts:
+The model predicts the following sleep stages:
 
 | Stage | Description |
 |------|------|
 | Wake | Awake state |
-| N1 | Light sleep |
-| N2 | Intermediate sleep |
-| N3 | Deep sleep |
+| Stage 1 | Light sleep |
+| Stage 2 | Intermediate sleep |
+| Stage 3/4 | Deep sleep |
 | REM | Rapid Eye Movement |
 
 ---
 
 # ⚙️ Signal Processing Pipeline
 
-## 1️⃣ Raw Signal Extraction
+## 1️⃣ Signal Extraction
 
 - Reading EDF files
-- Extracting EOG channels
+- Extracting EOG-R channel
 
-## 2️⃣ Preprocessing
+---
 
-- Signal normalization
-- Noise reduction
-- Epoch segmentation
+## 2️⃣ Filtering
 
-## 3️⃣ Feature Representation
+Bandpass filtering applied using:
 
-- Raw signal representation
-- Spectrogram generation
-- Sequential window creation
+- Low cutoff: 0.3 Hz
+- High cutoff: 35 Hz
 
-## 4️⃣ Subject-wise Splitting
+---
 
-The dataset is split subject-wise into:
+## 3️⃣ Epoch Segmentation
+
+- Signals segmented into 30-second epochs
+
+---
+
+## 4️⃣ Normalization
+
+- Subject-wise normalization applied to EOG signals
+
+---
+
+## 5️⃣ Sequence Generation
+
+- Sequential windows generated independently inside each subject
+
+---
+
+## 6️⃣ Subject-wise Splitting
+
+Dataset split into:
 
 - Training Set
 - Validation Set
@@ -134,16 +145,11 @@ This prevents data leakage between subjects.
 
 # 🏗️ Model Architecture
 
-The proposed architecture combines CNN and LSTM networks.
+The proposed deep learning architecture combines:
 
-## Architecture Components
-
-- 1D CNN Layers
-- Batch Normalization
-- MaxPooling
-- Dropout
-- Bidirectional LSTM
-- Fully Connected Layers
+- 1D CNN layers for local feature extraction
+- LSTM layers for temporal sequence learning
+- Fully connected layers for final classification
 
 ---
 
@@ -179,7 +185,7 @@ The proposed architecture combines CNN and LSTM networks.
 
 # 📈 Results
 
-The proposed CNN + LSTM model achieved strong performance on the Sleep-EDF dataset using EOG signals.
+The CNN-LSTM model achieved strong performance on the Sleep-EDF dataset using EOG-R signals.
 
 ---
 
@@ -210,6 +216,8 @@ The proposed CNN + LSTM model achieved strong performance on the Sleep-EDF datas
 
 The following plots show the training and validation performance across epochs.
 
+---
+
 ## Accuracy Curve
 
 <p align="center">
@@ -220,7 +228,7 @@ The following plots show the training and validation performance across epochs.
 
 - Training accuracy gradually increased to approximately **78%**
 - Validation accuracy stabilized around **54–62%**
-- The gap between training and validation accuracy indicates mild overfitting
+- Mild overfitting observed during training
 
 ---
 
@@ -232,7 +240,7 @@ The following plots show the training and validation performance across epochs.
 
 ### Observations
 
-- Training loss consistently decreased during training
+- Training loss consistently decreased
 - Validation loss fluctuated due to class imbalance and subject variability
 - The model maintained relatively stable convergence
 
@@ -261,69 +269,60 @@ The following plots show the training and validation performance across epochs.
 ## Strongly Classified Stages
 
 ### Wake
-- Achieved the best performance
+- Best overall classification performance
 - Precision reached **1.00**
 - F1-score reached **0.91**
-- Most Wake samples were correctly identified
+
+---
 
 ### Stage 2
-- Strong classification performance
+- Strong classification capability
 - F1-score reached **0.82**
-- Most Stage 2 epochs were successfully detected
+
+---
 
 ### REM
-- Good REM detection capability
+- Good REM detection performance
 - Recall reached **0.74**
-- Demonstrates successful temporal learning from EOG signals
 
 ---
 
 ## Challenging Stages
 
-### Stage 1 (N1)
-- Lowest classification performance
+### Stage 1
+- Most difficult stage to classify
 - F1-score reached **0.39**
-- Common confusion with:
+- Frequently confused with:
   - REM
   - Stage 2
 
-This is expected because Stage 1 shares transitional characteristics with neighboring sleep stages.
+This behavior is expected due to transitional sleep characteristics.
 
 ---
 
 ## Stage 3/4 Performance
 
 - Recall achieved **1.00**
-- The model successfully captured deep sleep patterns
-- Precision remained moderate due to false positives from Stage 2 predictions
+- Deep sleep patterns successfully captured
+- Precision remained moderate due to false positives
 
 ---
 
 # 🧠 Key Findings
 
-✔ CNN layers successfully extracted local EOG signal patterns  
-✔ LSTM layers improved temporal sequence learning  
+✔ CNN layers extracted local EOG signal patterns effectively  
+✔ LSTM layers improved temporal learning  
 ✔ Subject-wise splitting reduced data leakage  
 ✔ Weighted loss improved minority class learning  
-✔ The model generalized well despite class imbalance challenges
+✔ The model generalized reasonably well despite class imbalance
 
 ---
 
 # ⚠️ Limitations
 
-- Stage 1 remains difficult to classify
-- Validation accuracy fluctuations suggest:
-  - Subject variability
-  - Limited dataset size
-  - Mild overfitting
-
----
-
-# 🎬 Demo
-
-<p align="center">
-  <img src="images/demo.gif" width="90%">
-</p>
+- Stage 1 classification remains challenging
+- Mild overfitting observed
+- Validation performance fluctuated due to subject variability
 
 ---
 
@@ -337,15 +336,15 @@ This is expected because Stage 1 shares transitional characteristics with neighb
 | Pandas | Data Handling |
 | Matplotlib | Visualization |
 | Scikit-learn | Metrics |
-| MNE | EEG/EOG Processing |
-| SciPy | Signal Processing |
+| MNE | Signal Processing |
+| SciPy | Filtering & Processing |
 
 ---
 
 # 📁 Project Structure
 
 ```text
-EOG-Sleep-Stage-Classification/
+Sleep-Stage-Classification/
 │
 ├── data/
 ├── notebooks/
@@ -357,8 +356,7 @@ EOG-Sleep-Stage-Classification/
 │   ├── accuracy_curve.png
 │   ├── loss_curve.png
 │   ├── confusion_matrix_raw.png
-│   ├── confusion_matrix_normalized.png
-│   └── demo.gif
+│   └── confusion_matrix_normalized.png
 │
 ├── README.md
 ├── requirements.txt
@@ -372,7 +370,7 @@ EOG-Sleep-Stage-Classification/
 ## Clone Repository
 
 ```bash
-git clone https://github.com/your-username/EOG-Sleep-Stage-Classification.git
+git clone https://github.com/your-username/Sleep-Stage-Classification.git
 ```
 
 ---
@@ -421,23 +419,21 @@ tqdm
 # 🌟 Key Features
 
 ✔ Subject-wise dataset splitting  
-✔ Deep CNN + LSTM architecture  
-✔ Spectrogram support  
+✔ CNN-LSTM architecture  
+✔ EOG-R based sleep staging  
 ✔ CUDA acceleration  
 ✔ Visualization tools  
-✔ Automatic sleep stage prediction  
-✔ Research-oriented implementation
+✔ Deep learning sequence modeling
 
 ---
 
 # 🔬 Future Improvements
 
 - Attention mechanisms
-- Transformer-based architectures
+- Transformer architectures
 - Data augmentation
 - Focal loss
-- Multi-modal PSG integration
-- Subject-independent domain adaptation
+- Real-time sleep staging
 
 ---
 
@@ -461,13 +457,3 @@ https://mne.tools/
 🎓 Biomedical Engineering Student  
 🧠 Machine Learning & Deep Learning Enthusiast  
 📍 Helwan University
-
----
-
-# ⭐ Support
-
-If you found this project useful:
-
-- Give the repository a ⭐
-- Share it with others
-- Fork the project
