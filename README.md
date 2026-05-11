@@ -30,7 +30,6 @@ Automatic Sleep Stage Classification using EOG-R Signals and Deep Learning
 - [📊 Experimental Setup](#-experimental-setup)
 - [📈 Results](#-results)
 - [🛠️ Technologies Used](#️-technologies-used)
-- [🔬 Future Improvements](#-future-improvements)
 - [📚 References](#-references)
 - [👨‍💻 Author](#-author)
 
@@ -380,16 +379,6 @@ This behavior is expected due to transitional sleep characteristics.
 ✔ CUDA acceleration  
 ✔ Visualization tools  
 ✔ Deep learning sequence modeling
-
----
-
-# 🔬 Future Improvements
-
-- Attention mechanisms
-- Transformer architectures
-- Data augmentation
-- Focal loss
-- Real-time sleep staging
 
 ---
 
