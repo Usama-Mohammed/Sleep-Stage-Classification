@@ -29,7 +29,6 @@ Automatic Sleep Stage Classification using EOG-R Signals and Deep Learning
 - [🔄 Workflow](#-workflow)
 - [📊 Experimental Setup](#-experimental-setup)
 - [📈 Results](#-results)
-- [🛠️ Technologies Used](#️-technologies-used)
 - [📚 References](#-references)
 - [👨‍💻 Author](#-author)
 
@@ -353,21 +352,6 @@ This behavior is expected due to transitional sleep characteristics.
 - Stage 1 classification remains challenging
 - Mild overfitting observed
 - Validation performance fluctuated due to subject variability
-
----
-
-# 🛠️ Technologies Used
-
-| Tool | Purpose |
-|------|------|
-| Python | Programming Language |
-| PyTorch | Deep Learning |
-| NumPy | Numerical Processing |
-| Pandas | Data Handling |
-| Matplotlib | Visualization |
-| Scikit-learn | Metrics |
-| MNE | Signal Processing |
-| SciPy | Filtering & Processing |
 
 ---
 
